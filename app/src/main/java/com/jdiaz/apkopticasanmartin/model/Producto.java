@@ -1,37 +1,30 @@
-package com.jdiaz.apkopticasanmartin.bean;
+package com.jdiaz.apkopticasanmartin.model;
+
+import android.database.Cursor;
 
 public class Producto {
-    private Integer id;
-    private String Modelo;
-    private String Genero;
-    private String Varilla;
-    private String Puente;
-    private String Espejado;
-    private String Polarizado;
-    private String Estado;
-    private Double Precio;
-    private Integer Stock;
+    int id, Stock;
+    String Modelo, Genero, Varilla, Puente, Espejado, Polarizado, Estado;
+    double Precio;
 
-    public Producto(Integer id, String modelo, String genero, String varilla, String puente, String espejado,
-                    String polarizado, String estado, Double precio, Integer stock) {
-        
-        this.id = id;
-        Modelo = modelo;
-        Genero = genero;
-        Varilla = varilla;
-        Puente = puente;
-        Espejado = espejado;
-        Polarizado = polarizado;
-        Estado = estado;
-        Precio = precio;
-        Stock = stock;
+    public Producto(Cursor cursor) {
+        id = cursor.getInt(1);
+        Modelo = cursor.getString(2);
+        Genero = cursor.getString(3);
+        Varilla = cursor.getString(4);
+        Puente = cursor.getString(5);
+        Espejado = cursor.getString(6);
+        Polarizado = cursor.getString(7);
+        Estado = cursor.getString(8);
+        Precio = cursor.getDouble(9);
+        Stock = cursor.getInt(10);
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -91,19 +84,19 @@ public class Producto {
         Estado = estado;
     }
 
-    public Double getPrecio() {
+    public double getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         Precio = precio;
     }
 
-    public Integer getStock() {
+    public int getStock() {
         return Stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(int stock) {
         Stock = stock;
     }
 }

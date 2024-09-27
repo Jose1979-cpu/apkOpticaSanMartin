@@ -7,13 +7,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    public static String URL_IMAGE = "https://srv1467-files.hstgr.io/05c4df64ac23bd67/files/public_html/images/optica/";
+    public static String URL_API = "https://oaemdl.es/optica/";
 
     private ActivityMainBinding binding;
 
@@ -25,13 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_mapa)
-                .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
