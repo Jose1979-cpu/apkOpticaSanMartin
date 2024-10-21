@@ -1,6 +1,8 @@
 package com.jdiaz.apkopticasanmartin.model;
 
-public class Categoria {
+import java.io.Serializable;
+
+public class Categoria implements Serializable {
     int id;
     String Detalle;
 

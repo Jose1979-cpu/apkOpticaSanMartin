@@ -1,6 +1,8 @@
 package com.jdiaz.apkopticasanmartin.model;
 
-public class Marca {
+import java.io.Serializable;
+
+public class Marca implements Serializable {
     int id;
     String Detalle;
 

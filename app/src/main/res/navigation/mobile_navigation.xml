@@ -3,10 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_mapa">
+    app:startDestination="@id/navigation_splash">
     <fragment
-        android:id="@+id/navigation_mapa"
-        android:name="com.jdiaz.apkopticasanmartin.ui.Mapa"
-        android:label="fragment_mapa"
-        tools:layout="@layout/fragment_mapa" />
+        android:id="@+id/navigation_splash"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Splash"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_navigation_splash_to_navigation_novedades"
+            app:destination="@id/navigation_novedades" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_novedades"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Novedades"
+        android:label="fragment_novedades"
+        tools:layout="@layout/fragment_novedades" >
+        <action
+            android:id="@+id/action_navigation_novedades_to_navigation_productos"
+            app:destination="@id/navigation_productos" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_productos"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Productos"
+        android:label="fragment_productos"
+        tools:layout="@layout/fragment_productos" />
 </navigation>

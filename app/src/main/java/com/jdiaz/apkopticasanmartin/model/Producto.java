@@ -2,23 +2,13 @@ package com.jdiaz.apkopticasanmartin.model;
 
 import android.database.Cursor;
 
-public class Producto {
-    int id, Stock;
-    String Modelo, Genero, Varilla, Puente, Espejado, Polarizado, Estado;
-    double Precio;
+import java.io.Serializable;
 
-    public Producto(Cursor cursor) {
-        id = cursor.getInt(1);
-        Modelo = cursor.getString(2);
-        Genero = cursor.getString(3);
-        Varilla = cursor.getString(4);
-        Puente = cursor.getString(5);
-        Espejado = cursor.getString(6);
-        Polarizado = cursor.getString(7);
-        Estado = cursor.getString(8);
-        Precio = cursor.getDouble(9);
-        Stock = cursor.getInt(10);
-    }
+public class Producto implements Serializable {
+    int id, idCategoria, idMarca, idColorMarco, idColorLente, idFormaMarco, idMaterialMontura, idMaterialLente, Stock;
+    String Modelo, Genero, Varilla, Puente, Espejado, Polarizado, Estado;
+    String Categoria, Marca, ColorMarco, ColorLente, FormaMarco, MaterialMontura, MaterialLente;
+    double Precio;
 
     public int getId() {
         return id;
@@ -26,6 +16,70 @@ public class Producto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public int getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }
+
+    public int getIdColorMarco() {
+        return idColorMarco;
+    }
+
+    public void setIdColorMarco(int idColorMarco) {
+        this.idColorMarco = idColorMarco;
+    }
+
+    public int getIdColorLente() {
+        return idColorLente;
+    }
+
+    public void setIdColorLente(int idColorLente) {
+        this.idColorLente = idColorLente;
+    }
+
+    public int getIdFormaMarco() {
+        return idFormaMarco;
+    }
+
+    public void setIdFormaMarco(int idFormaMarco) {
+        this.idFormaMarco = idFormaMarco;
+    }
+
+    public int getIdMaterialMontura() {
+        return idMaterialMontura;
+    }
+
+    public void setIdMaterialMontura(int idMaterialMontura) {
+        this.idMaterialMontura = idMaterialMontura;
+    }
+
+    public int getIdMaterialLente() {
+        return idMaterialLente;
+    }
+
+    public void setIdMaterialLente(int idMaterialLente) {
+        this.idMaterialLente = idMaterialLente;
+    }
+
+    public int getStock() {
+        return Stock;
+    }
+
+    public void setStock(int stock) {
+        Stock = stock;
     }
 
     public String getModelo() {
@@ -92,11 +146,34 @@ public class Producto {
         Precio = precio;
     }
 
-    public int getStock() {
-        return Stock;
+
+    public Producto(Cursor cursor) {
+        id = cursor.getInt(0);
+        Modelo = cursor.getString(1);
+        idCategoria = cursor.getInt(2);
+        idMarca = cursor.getInt(3);
+        idColorMarco = cursor.getInt(4);
+        idColorLente = cursor.getInt(5);
+        idFormaMarco = cursor.getInt(6);
+        idMaterialMontura = cursor.getInt(7);
+        idMaterialLente = cursor.getInt(8);
+        Genero = cursor.getString(9);
+        Varilla = cursor.getString(10);
+        Puente = cursor.getString(11);
+        Espejado = cursor.getString(12);
+        Polarizado = cursor.getString(13);
+        Estado = cursor.getString(14);
+        Precio = cursor.getDouble(15);
+        Stock = cursor.getInt(16);
+
+        Categoria = cursor.getString(17);
+        Marca = cursor.getString(18);
+        ColorMarco = cursor.getString(19);
+        ColorLente = cursor.getString(20);
+        FormaMarco = cursor.getString(8);
+        MaterialMontura = cursor.getString(8);
+        MaterialLente = cursor.getString(8);
     }
 
-    public void setStock(int stock) {
-        Stock = stock;
-    }
+
 }
