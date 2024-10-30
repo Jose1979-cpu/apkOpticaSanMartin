@@ -47,6 +47,7 @@ public class SincronizarDAO {
         values.put("Puente", jso.getString("Puente").equals("null") ? null : jso.getString("Puente") );
         values.put("Espejado", jso.getString("Espejado").equals("null") ? null : jso.getString("Espejado") );
         values.put("Polarizado", jso.getString("Polarizado").equals("null") ? null : jso.getString("Polarizado") );
+        values.put("Estado", jso.getString("Estado") );
         values.put("Precio", jso.getDouble("Precio") );
         values.put("Stock", jso.getInt("Stock") );
         values.put("Categoria", jso.getString("Categoria") );

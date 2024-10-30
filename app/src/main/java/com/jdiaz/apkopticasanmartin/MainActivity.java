@@ -14,7 +14,7 @@ import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    public static String URL_IMAGE = "https://srv1467-files.hstgr.io/05c4df64ac23bd67/files/public_html/images/optica/";
+    public static String URL_IMAGE = "https://oaemdl.es/images/optica/";
     public static String URL_API = "https://oaemdl.es/optica_sweb_php/";
 
     private ActivityMainBinding binding;

@@ -146,6 +146,61 @@ public class Producto implements Serializable {
         Precio = precio;
     }
 
+    public String getCategoria() {
+        return Categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        Categoria = categoria;
+    }
+
+    public String getMarca() {
+        return Marca;
+    }
+
+    public void setMarca(String marca) {
+        Marca = marca;
+    }
+
+    public String getColorMarco() {
+        return ColorMarco;
+    }
+
+    public void setColorMarco(String colorMarco) {
+        ColorMarco = colorMarco;
+    }
+
+    public String getColorLente() {
+        return ColorLente;
+    }
+
+    public void setColorLente(String colorLente) {
+        ColorLente = colorLente;
+    }
+
+    public String getFormaMarco() {
+        return FormaMarco;
+    }
+
+    public void setFormaMarco(String formaMarco) {
+        FormaMarco = formaMarco;
+    }
+
+    public String getMaterialMontura() {
+        return MaterialMontura;
+    }
+
+    public void setMaterialMontura(String materialMontura) {
+        MaterialMontura = materialMontura;
+    }
+
+    public String getMaterialLente() {
+        return MaterialLente;
+    }
+
+    public void setMaterialLente(String materialLente) {
+        MaterialLente = materialLente;
+    }
 
     public Producto(Cursor cursor) {
         id = cursor.getInt(0);
@@ -170,9 +225,9 @@ public class Producto implements Serializable {
         Marca = cursor.getString(18);
         ColorMarco = cursor.getString(19);
         ColorLente = cursor.getString(20);
-        FormaMarco = cursor.getString(8);
-        MaterialMontura = cursor.getString(8);
-        MaterialLente = cursor.getString(8);
+        FormaMarco = cursor.getString(21);
+        MaterialMontura = cursor.getString(22);
+        MaterialLente = cursor.getString(23);
     }
 
 

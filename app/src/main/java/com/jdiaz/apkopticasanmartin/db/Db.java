@@ -32,7 +32,7 @@ public class Db extends SQLiteOpenHelper {
         db.execSQL( "create table Producto ( id integer, Modelo text, idCategoria integer," +
                     " idMarca integer,idColorMarco integer,idColorLente integer," +
                     " idFormaMarco integer, idMaterialMontura integer, idMaterialLente integer," +
-                    " Genero text, Varilla text, Puente text, Espejado text, Polarizado text," +
+                    " Genero text, Varilla text, Puente text, Espejado text, Polarizado text, Estado text," +
                     " Precio real, Stock integer, Categoria text, Marca text, ColorMarco text, ColorLente text," +
                     " FormaMarco text, MaterialMontura text, MaterialLente text )");
     }

@@ -19,12 +19,30 @@
         android:label="fragment_novedades"
         tools:layout="@layout/fragment_novedades" >
         <action
-            android:id="@+id/action_navigation_novedades_to_navigation_productos"
-            app:destination="@id/navigation_productos" />
+            android:id="@+id/action_navigation_novedades_to_navigation_categorias"
+            app:destination="@id/navigation_categorias" />
     </fragment>
     <fragment
         android:id="@+id/navigation_productos"
         android:name="com.jdiaz.apkopticasanmartin.ui.Productos"
         android:label="fragment_productos"
-        tools:layout="@layout/fragment_productos" />
+        tools:layout="@layout/fragment_productos" >
+        <action
+            android:id="@+id/action_navigation_productos_to_navigation_producto"
+            app:destination="@id/navigation_producto" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_categorias"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Categorias"
+        android:label="fragment_categorias"
+        tools:layout="@layout/fragment_categorias" >
+        <action
+            android:id="@+id/action_navigation_categorias_to_navigation_productos"
+            app:destination="@id/navigation_productos" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_producto"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Producto"
+        android:label="fragment_producto"
+        tools:layout="@layout/fragment_producto" />
 </navigation>
