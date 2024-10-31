@@ -21,6 +21,18 @@
         <action
             android:id="@+id/action_navigation_novedades_to_navigation_categorias"
             app:destination="@id/navigation_categorias" />
+        <action
+            android:id="@+id/action_navigation_novedades_to_navigation_login"
+            app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_navigation_novedades_to_navigation_nosotros"
+            app:destination="@id/navigation_nosotros" />
+        <action
+            android:id="@+id/action_navigation_novedades_to_navigation_mapa"
+            app:destination="@id/navigation_mapa" />
+        <action
+            android:id="@+id/action_navigation_novedades_to_navigation_login2"
+            app:destination="@id/navigation_login" />
     </fragment>
     <fragment
         android:id="@+id/navigation_productos"
@@ -45,4 +57,28 @@
         android:name="com.jdiaz.apkopticasanmartin.ui.ProductoVer"
         android:label="fragment_producto"
         tools:layout="@layout/fragment_producto" />
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_registrar"
+            app:destination="@id/navigation_registrar" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_mapa"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Mapa"
+        android:label="fragment_mapa"
+        tools:layout="@layout/fragment_mapa" />
+    <fragment
+        android:id="@+id/navigation_nosotros"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Nosotros"
+        android:label="fragment_sobre_nosotros"
+        tools:layout="@layout/fragment_nosotros" />
+    <fragment
+        android:id="@+id/navigation_registrar"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Registrar"
+        android:label="fragment_registrar"
+        tools:layout="@layout/fragment_registrar" />
 </navigation>

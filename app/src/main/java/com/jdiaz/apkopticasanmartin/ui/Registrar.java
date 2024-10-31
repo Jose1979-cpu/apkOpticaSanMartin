@@ -14,14 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jdiaz.apkopticasanmartin.R;
-import com.jdiaz.apkopticasanmartin.databinding.FragmentSobreNosotrosBinding;
+import com.jdiaz.apkopticasanmartin.databinding.FragmentRegistrarBinding;
 
-
-public class SobreNosotros extends Fragment {
-   FragmentSobreNosotrosBinding binding;
-   View view;
-   Context context;
-   NavController navController;
+public class Registrar extends Fragment {
+    FragmentRegistrarBinding binding;
+    View view;
+    Context context;
+    NavController navController;
 
     @Override
     public void onDestroy() {
@@ -29,9 +28,10 @@ public class SobreNosotros extends Fragment {
         binding = null;
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentSobreNosotrosBinding.inflate(inflater, container, false);
+        binding = FragmentRegistrarBinding.inflate(inflater,container,false);
         return view = binding.getRoot();
     }
 
@@ -43,6 +43,4 @@ public class SobreNosotros extends Fragment {
 
 
     }
-
-
 }

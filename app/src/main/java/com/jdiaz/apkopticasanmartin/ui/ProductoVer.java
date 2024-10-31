@@ -13,9 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jdiaz.apkopticasanmartin.MainActivity;
+import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.databinding.FragmentProductoBinding;
 import com.jdiaz.apkopticasanmartin.model.Categoria;
 import com.jdiaz.apkopticasanmartin.model.Producto;
+import com.squareup.picasso.Picasso;
 
 public class ProductoVer extends Fragment {
     FragmentProductoBinding binding;
@@ -45,6 +48,26 @@ public class ProductoVer extends Fragment {
         navController = Navigation.findNavController(view);
 
         producto = getArguments() != null ? ( Producto ) getArguments().getSerializable("producto") : null;
+        if ( producto == null ) return;
+
+        Picasso.with( context )
+                .load(MainActivity.URL_IMAGE + producto.getModelo() + ".jpg" )
+                .fit().centerCrop()
+                .placeholder( R.drawable.ic_monturas )
+                .error( R.drawable.ic_monturas )
+                .into( binding.ivProducto );
+
+        binding.ivBack.setOnClickListener( v -> navController.navigateUp() );
+        binding.tvModelo.setText( producto.getModelo() );
+        binding.tvMarca.setText( producto.getMarca() );
+        binding.tvColorMarco.setText( String.format("Color de marco : %s", producto.getColorMarco() ) );
+        binding.tvColorLente.setText( String.format("Color de lente : %s", producto.getColorLente() ) );
+        binding.tvFormaMarco.setText( String.format("Forma de marco : %s", producto.getFormaMarco() ) );
+        binding.tvMaterialMarco.setText( String.format("Material marco : %s", producto.getMaterialMontura() ) );
+        binding.tvMaterialLente.setText( String.format("Material lente : %s", producto.getMaterialLente() ) );
+
+
+
     }
 
 }

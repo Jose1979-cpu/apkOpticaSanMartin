@@ -11,4 +11,19 @@
           android:icon="@drawable/ic_monturas"
           android:title="Categorías" />
 
+      <item
+          android:id="@+id/navigation_login"
+          android:icon="@drawable/ic_user"
+          android:title="Login" />
+
+      <item
+          android:id="@+id/navigation_mapa"
+          android:icon="@drawable/ic_mapa"
+          android:title="Ubicación" />
+
+      <item
+          android:id="@+id/navigation_nosotros"
+          android:icon="@drawable/ic_info"
+          android:title="Nosotros" />
+
 </menu>
