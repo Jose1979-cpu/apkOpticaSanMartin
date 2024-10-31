@@ -25,8 +25,8 @@ public class Db extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL( "create table Marca ( id integer primary key, Detalle text )" );
-        db.execSQL( "create table Categoria ( id integer primary key, Detalle text )" );
+        db.execSQL( "create table Marca ( id integer, Detalle text )" );
+        db.execSQL( "create table Categoria ( id integer, Detalle text )" );
         db.execSQL( "create table CategoriaMarca ( idCategoria integer, idMarca integer )" );
 
         db.execSQL( "create table Producto ( id integer, Modelo text, idCategoria integer," +

@@ -64,7 +64,7 @@ public class Categorias extends Fragment {
         binding.rvCategorias.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.HORIZONTAL, false ) );
         binding.rvCategorias.setAdapter( new CategoriaAdapter( context, navController, categorias, images ) );
 
-        productos = productoDAO.getProductos("Novedades");
+        productos = productoDAO.getProductos("novedades", -1);
         binding.rvProductos.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.VERTICAL, false ) );
         binding.rvProductos.setAdapter( new ProductoAdapter( context, navController, productos ) );
     }

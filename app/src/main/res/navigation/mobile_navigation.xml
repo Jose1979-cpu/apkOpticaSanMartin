@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_producto"
-        android:name="com.jdiaz.apkopticasanmartin.ui.Producto"
+        android:name="com.jdiaz.apkopticasanmartin.ui.ProductoVer"
         android:label="fragment_producto"
         tools:layout="@layout/fragment_producto" />
 </navigation>

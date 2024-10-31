@@ -13,14 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.databinding.FragmentProductoBinding;
+import com.jdiaz.apkopticasanmartin.model.Categoria;
+import com.jdiaz.apkopticasanmartin.model.Producto;
 
-public class Producto extends Fragment {
+public class ProductoVer extends Fragment {
     FragmentProductoBinding binding;
     View view;
     Context context;
     NavController navController;
+
+    Producto producto;
 
     @Override
     public void onDestroy() {
@@ -40,5 +43,8 @@ public class Producto extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         context = getContext();
         navController = Navigation.findNavController(view);
+
+        producto = getArguments() != null ? ( Producto ) getArguments().getSerializable("producto") : null;
     }
+
 }

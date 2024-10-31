@@ -7,80 +7,68 @@
     android:layout_height="match_parent"
     tools:context=".ui.Productos">
 
-    <TextView
-        android:id="@+id/tvProductos"
+    <ImageView
+        android:id="@+id/ivBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/contentdescription"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="1dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvProductos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="40dp"
+        android:paddingVertical="10dp"
+        android:background="@color/picton_blue"
         android:text="Productos"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <LinearLayout
-        android:id="@+id/llCategorias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tvProductos"
-        app:layout_constraintStart_toStartOf="parent" >
-
-        <TextView
-            android:id="@+id/tvGafas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:drawableTop="@drawable/ic_gafas"
-            android:text="Gafas de\nsol"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:id="@+id/tvMonturas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:drawableTop="@drawable/ic_monturas"
-            android:text="Monturas" />
-
-        <TextView
-            android:id="@+id/tvContactos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:drawableTop="@drawable/ic_contacto"
-            android:text="Lentes de\ncontacto" />
-
-        <TextView
-            android:id="@+id/tvLiquidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:drawableTop="@drawable/ic_liquidos"
-            android:text="Líquidos" />
-
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/tvNovedades"
+        android:id="@+id/tvCategoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="Novedades"
+        android:layout_margin="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/llCategorias"
+        app:layout_constraintTop_toBottomOf="@id/tvProductos"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <TextView
+        android:id="@+id/tvMarca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Marca"
+        app:layout_constraintTop_toBottomOf="@id/tvCategoria"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Spinner
+        android:id="@+id/spnMarcas"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:prompt="@string/marcas"
+        android:spinnerMode="dialog"
+        app:layout_constraintTop_toBottomOf="@id/tvMarca"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNovedades"
+        android:id="@+id/rvProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tvNovedades"
+        app:layout_constraintTop_toBottomOf="@id/spnMarcas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -17,17 +17,21 @@ import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.model.Producto;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder>{
     Context context;
     NavController navController;
-    List<Producto> productos;
+    List<Producto> productos = new ArrayList<>();
+    List<Producto> productosTodos;
 
     public ProductoAdapter(Context context, NavController navController, List<Producto> productos) {
         this.context = context;
         this.navController = navController;
-        this.productos = productos;
+        this.productosTodos = productos;
+        Filtrar( -1 );
     }
 
     @NonNull
@@ -61,6 +65,16 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
     @Override
     public int getItemCount() {
         return productos.size();
+    }
+
+
+    public void Filtrar(int idMarca ) {
+        productos.clear();
+        for ( Producto producto : productosTodos )
+            if ( idMarca == -1 ) productos.add( producto );
+            else productos = productosTodos.stream().filter(i -> i.getIdMarca() == idMarca ).collect( Collectors.toList() );
+
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

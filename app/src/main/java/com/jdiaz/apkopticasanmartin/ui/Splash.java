@@ -76,6 +76,10 @@ public class Splash extends Fragment {
                     for ( int i=0, filas = marcas.length(); i < filas; i++ )
                         sincronizarDAO.MarcaInsert( new JSONObject( marcas.get(i).toString() )  );
 
+                    JSONArray categoria_marcas = new JSONArray( data.getString("categoria_marcas") );
+                    for ( int i=0, filas = categoria_marcas.length(); i < filas; i++ )
+                        sincronizarDAO.CategoriaMarcaInsert( new JSONObject( categoria_marcas.get(i).toString() )  );
+
                     JSONArray productos = new JSONArray( data.getString("productos") );
                     for ( int i=0, filas = productos.length(); i < filas; i++ )
                         sincronizarDAO.ProductoInsert( new JSONObject( productos.get(i).toString() )  );

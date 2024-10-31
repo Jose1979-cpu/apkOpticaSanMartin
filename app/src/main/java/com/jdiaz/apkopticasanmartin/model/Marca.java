@@ -27,4 +27,8 @@ public class Marca implements Serializable {
         Detalle = detalle;
     }
 
+    @Override
+    public String toString() {
+        return Detalle;
+    }
 }
