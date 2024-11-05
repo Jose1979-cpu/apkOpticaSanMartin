@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="picton_blue">#37AFE1</color>
+
+    <color name="picton_blue">#1E56C3</color>
     <color name="amaranth">#E83256</color>
 </resources>

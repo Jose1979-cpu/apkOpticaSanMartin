@@ -11,8 +11,8 @@
         android:layout_width="256dp"
         android:layout_height="128dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="150dp"
-        android:src="@drawable/ic_monturas" />
+        android:layout_marginBottom="200dp"
+        android:src="@drawable/jpg_logo" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -33,15 +33,13 @@
                 android:id="@+id/tilCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:helperText="Correo requerido"
-                app:helperTextTextColor="@color/amaranth"
                 app:hintTextColor="@color/picton_blue" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:inputType="number"
-                    android:maxLength="8"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="50"
                     android:hint="Correo electrónico" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -53,8 +51,6 @@
                 android:inputType="numberPassword"
                 android:maxLength="6"
                 app:endIconMode="clear_text"
-                app:helperText="Constraseña requerida"
-                app:helperTextTextColor="@color/amaranth"
                 app:hintTextColor="@color/picton_blue" >
 
                 <com.google.android.material.textfield.TextInputEditText

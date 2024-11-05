@@ -22,17 +22,14 @@
             android:id="@+id/action_navigation_novedades_to_navigation_categorias"
             app:destination="@id/navigation_categorias" />
         <action
-            android:id="@+id/action_navigation_novedades_to_navigation_login"
-            app:destination="@id/navigation_login" />
-        <action
             android:id="@+id/action_navigation_novedades_to_navigation_nosotros"
             app:destination="@id/navigation_nosotros" />
         <action
             android:id="@+id/action_navigation_novedades_to_navigation_mapa"
             app:destination="@id/navigation_mapa" />
         <action
-            android:id="@+id/action_navigation_novedades_to_navigation_login2"
-            app:destination="@id/navigation_login" />
+            android:id="@+id/action_navigation_novedades_to_navigation_perfil"
+            app:destination="@id/navigation_perfil" />
     </fragment>
     <fragment
         android:id="@+id/navigation_productos"
@@ -51,6 +48,9 @@
         <action
             android:id="@+id/action_navigation_categorias_to_navigation_productos"
             app:destination="@id/navigation_productos" />
+        <action
+            android:id="@+id/action_navigation_categorias_to_navigation_producto"
+            app:destination="@id/navigation_producto" />
     </fragment>
     <fragment
         android:id="@+id/navigation_producto"
@@ -81,4 +81,13 @@
         android:name="com.jdiaz.apkopticasanmartin.ui.Registrar"
         android:label="fragment_registrar"
         tools:layout="@layout/fragment_registrar" />
+    <fragment
+        android:id="@+id/navigation_perfil"
+        android:name="com.jdiaz.apkopticasanmartin.ui.Perfil"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_navigation_perfil_to_navigation_login"
+            app:destination="@id/navigation_login" />
+    </fragment>
 </navigation>

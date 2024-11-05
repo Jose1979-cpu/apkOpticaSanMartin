@@ -13,15 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jdiaz.apkopticasanmartin.MainActivity;
 import com.jdiaz.apkopticasanmartin.R;
-import com.jdiaz.apkopticasanmartin.databinding.FragmentLoginBinding;
+import com.jdiaz.apkopticasanmartin.databinding.FragmentPerfilBinding;
 
-
-public class Login extends Fragment {
-FragmentLoginBinding binding;
-View view;
-Context context;
-NavController navController;
+public class Perfil extends Fragment {
+    FragmentPerfilBinding binding;
+    View view;
+    Context context;
+    NavController navController;
 
     @Override
     public void onDestroy() {
@@ -31,7 +31,7 @@ NavController navController;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentLoginBinding.inflate(inflater, container,false);
+        binding = FragmentPerfilBinding.inflate(inflater, container, false);
         return view = binding.getRoot();
     }
 
@@ -41,6 +41,11 @@ NavController navController;
         context = getContext();
         navController = Navigation.findNavController(view);
 
-        binding.btnRegistrar.setOnClickListener(v -> navController.navigate( R.id.navigation_registrar ) );
+        if (MainActivity.usuario == null ) {
+            navController.navigate( R.id.navigation_login );
+            return;
+        }
+
     }
+
 }

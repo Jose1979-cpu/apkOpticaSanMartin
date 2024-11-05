@@ -12,10 +12,12 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.databinding.ActivityMainBinding;
+import com.jdiaz.apkopticasanmartin.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
     public static String URL_IMAGE = "https://oaemdl.es/images/optica/";
     public static String URL_API = "https://oaemdl.es/optica_sweb_php/";
+    public static Usuario usuario = null;
 
     private ActivityMainBinding binding;
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
             navView.setVisibility( View.VISIBLE );
             int id = navDestination.getId();
-            if ( id == R.id.navigation_splash  )
+            if ( id == R.id.navigation_splash || id == R.id.navigation_registrar )
                 navView.setVisibility( View.INVISIBLE );
         });
     }
