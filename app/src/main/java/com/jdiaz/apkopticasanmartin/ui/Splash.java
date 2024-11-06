@@ -17,12 +17,17 @@ import android.view.ViewGroup;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.jdiaz.apkopticasanmartin.MainActivity;
 import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.controller.SincronizarDAO;
 import com.jdiaz.apkopticasanmartin.controller.UtilDAO;
 import com.jdiaz.apkopticasanmartin.databinding.FragmentSplashBinding;
 import com.jdiaz.apkopticasanmartin.db.VolleySingleton;
+import com.jdiaz.apkopticasanmartin.model.Categoria;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +41,7 @@ public class Splash extends Fragment {
 
     UtilDAO utilDAO;
     SincronizarDAO sincronizarDAO;
+    FirebaseFirestore firestore;
 
     @Override
     public void onDestroy() {
@@ -56,6 +62,7 @@ public class Splash extends Fragment {
         navController = Navigation.findNavController(view);
         utilDAO = new UtilDAO( context );
         sincronizarDAO = new SincronizarDAO(context);
+        firestore = FirebaseFirestore.getInstance();
         
         if ( !utilDAO.getCount("Producto") ) Sincronizar();
         new Handler().postDelayed( () -> Navigation.findNavController(view).navigate( R.id.navigation_novedades ), 3000 );
@@ -69,8 +76,11 @@ public class Splash extends Fragment {
                     JSONObject data = new JSONObject( response.getString("data") );
 
                     JSONArray categorias = new JSONArray( data.getString("categorias") );
-                    for ( int i=0, filas = categorias.length(); i < filas; i++ )
-                        sincronizarDAO.CategoriaInsert( new JSONObject( categorias.get(i).toString() )  );
+                    for ( int i=0, filas = categorias.length(); i < filas; i++ ) {
+                        JSONObject jso = new JSONObject( categorias.get(i).toString() );
+                        sincronizarDAO.CategoriaInsert( jso );
+                        insertar( jso.getInt("id"), jso.getString("Detalle") );
+                    }
 
                     JSONArray marcas = new JSONArray( data.getString("marcas") );
                     for ( int i=0, filas = marcas.length(); i < filas; i++ )
@@ -89,6 +99,11 @@ public class Splash extends Fragment {
 
         }, error -> Log.i("Sincronizar", error.getMessage() ) );
         VolleySingleton.getInstance( context ).addToRequestQueue( request );
+
+    }
+
+    private void insertar(int id, String detalle) {
+        firestore.collection("categoria").add( new Categoria( id, detalle ) );
 
     }
 
