@@ -50,7 +50,7 @@ public class ProductoVer extends Fragment {
         producto = getArguments() != null ? ( Producto ) getArguments().getSerializable("producto") : null;
         if ( producto == null ) return;
 
-        Picasso.with( context )
+        Picasso.get()
                 .load(MainActivity.URL_IMAGE + producto.getModelo() + ".jpg" )
                 .fit().centerCrop()
                 .placeholder( R.drawable.ic_monturas )

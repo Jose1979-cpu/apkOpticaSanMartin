@@ -15,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.jdiaz.apkopticasanmartin.MainActivity;
 import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.adapter.CategoriaAdapter;
 import com.jdiaz.apkopticasanmartin.adapter.ProductoAdapter;
@@ -24,6 +27,7 @@ import com.jdiaz.apkopticasanmartin.databinding.FragmentCategoriasBinding;
 import com.jdiaz.apkopticasanmartin.model.Categoria;
 import com.jdiaz.apkopticasanmartin.model.Producto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,6 +36,7 @@ public class Categorias extends Fragment {
     View view;
     Context context;
     NavController navController;
+    FirebaseFirestore firestore;
 
     List<Categoria> categorias;
     List<Producto> productos;
@@ -58,8 +63,9 @@ public class Categorias extends Fragment {
         navController = Navigation.findNavController(view);
         categoriaDAO = new CategoriaDAO( context );
         productoDAO = new ProductoDAO( context );
+        firestore = FirebaseFirestore.getInstance();
 
-        categorias = categoriaDAO.getCategorias();
+        getCategorias();
         int[] images = { R.drawable.ic_gafas, R.drawable.ic_monturas, R.drawable.ic_contacto, R.drawable.ic_liquidos };
         binding.rvCategorias.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.HORIZONTAL, false ) );
         binding.rvCategorias.setAdapter( new CategoriaAdapter( context, navController, categorias, images ) );
@@ -67,5 +73,16 @@ public class Categorias extends Fragment {
         productos = productoDAO.getProductos("novedades", -1);
         binding.rvProductos.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.VERTICAL, false ) );
         binding.rvProductos.setAdapter( new ProductoAdapter( context, navController, productos ) );
+    }
+
+    private void getCategorias() {
+        firestore.collection("categoria").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if ( queryDocumentSnapshots.isEmpty() ) categorias = null;
+
+            categorias = new ArrayList<>();
+            ArrayList<DocumentSnapshot> docs = ( ArrayList<DocumentSnapshot> ) queryDocumentSnapshots.getDocuments();
+            for( DocumentSnapshot doc : docs )
+                categorias.add( doc.toObject( Categoria.class ) );
+        }).addOnFailureListener(e -> categorias = null );
     }
 }

@@ -46,7 +46,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         holder.tvModelo.setText( producto.getModelo() );
         holder.tvMarca.setText( producto.getMarca() );
 
-        Picasso.with( context )
+        Picasso.get()
                 .load(MainActivity.URL_IMAGE + producto.getModelo() + ".jpg" )
                 .fit().centerCrop()
                 .placeholder( R.drawable.ic_monturas )

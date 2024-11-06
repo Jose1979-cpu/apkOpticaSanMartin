@@ -3,6 +3,12 @@ package com.jdiaz.apkopticasanmartin.controller;
 import android.content.Context;
 import android.database.Cursor;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.jdiaz.apkopticasanmartin.MainActivity;
 import com.jdiaz.apkopticasanmartin.db.Db;
 import com.jdiaz.apkopticasanmartin.model.Categoria;
 
@@ -29,4 +35,6 @@ public class CategoriaDAO {
         cursor.close();
         return categorias;
     }
+
+
 }
