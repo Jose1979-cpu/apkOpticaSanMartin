@@ -22,6 +22,8 @@ public class Categoria implements Serializable {
         Detalle = detalle;
     }
 
+    public Categoria() { }
+
     public Categoria(int id, String detalle) {
         this.id = id;
         Detalle = detalle;

@@ -22,6 +22,8 @@ public class Marca implements Serializable {
         Detalle = detalle;
     }
 
+    public Marca() { }
+
     public Marca(int id, String detalle) {
         this.id = id;
         Detalle = detalle;

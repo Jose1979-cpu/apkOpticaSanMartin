@@ -15,18 +15,18 @@ public class SincronizarDAO {
         db = new Db(context);
     }
 
-    public void CategoriaInsert(JSONObject jso) throws JSONException {
+    public void CategoriaInsert( long id, String detalle ) {
         ContentValues values = new ContentValues();
-        values.put("id", jso.getInt("id") );
-        values.put("detalle", jso.getString("Detalle") );
+        values.put("id", id );
+        values.put("detalle", detalle );
 
         db.Insert("Categoria", values);
     }
 
-    public void MarcaInsert(JSONObject jso ) throws JSONException {
+    public void MarcaInsert( long id, String detalle ) {
         ContentValues values = new ContentValues();
-        values.put("id", jso.getInt("id") );
-        values.put("detalle", jso.getString("Detalle") );
+        values.put("id", id );
+        values.put("detalle", detalle );
 
         db.Insert("Marca", values);
     }

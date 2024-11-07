@@ -66,23 +66,25 @@ public class Categorias extends Fragment {
         firestore = FirebaseFirestore.getInstance();
 
         getCategorias();
-        int[] images = { R.drawable.ic_gafas, R.drawable.ic_monturas, R.drawable.ic_contacto, R.drawable.ic_liquidos };
-        binding.rvCategorias.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.HORIZONTAL, false ) );
-        binding.rvCategorias.setAdapter( new CategoriaAdapter( context, navController, categorias, images ) );
-
         productos = productoDAO.getProductos("novedades", -1);
-        binding.rvProductos.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.VERTICAL, false ) );
-        binding.rvProductos.setAdapter( new ProductoAdapter( context, navController, productos ) );
+        if ( productos != null ) {
+            binding.rvProductos.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+            binding.rvProductos.setAdapter(new ProductoAdapter(context, navController, productos));
+        }
     }
 
     private void getCategorias() {
-        firestore.collection("categoria").get().addOnSuccessListener(queryDocumentSnapshots -> {
+        firestore.collection("categoria").orderBy("id").get().addOnSuccessListener(queryDocumentSnapshots -> {
             if ( queryDocumentSnapshots.isEmpty() ) categorias = null;
 
             categorias = new ArrayList<>();
             ArrayList<DocumentSnapshot> docs = ( ArrayList<DocumentSnapshot> ) queryDocumentSnapshots.getDocuments();
             for( DocumentSnapshot doc : docs )
                 categorias.add( doc.toObject( Categoria.class ) );
+
+            int[] images = { R.drawable.ic_gafas, R.drawable.ic_monturas, R.drawable.ic_contacto, R.drawable.ic_liquidos };
+            binding.rvCategorias.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.HORIZONTAL, false ) );
+            binding.rvCategorias.setAdapter( new CategoriaAdapter( context, navController, categorias, images ) );
         }).addOnFailureListener(e -> categorias = null );
     }
 }
