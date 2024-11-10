@@ -79,7 +79,6 @@ public class Splash extends Fragment {
                     sincronizarDAO.CategoriaInsert( doc.getLong("id"), doc.getString("detalle") );
             }
         }).addOnFailureListener(e -> { } );
-
     }
 
     private void Sincronizar() {
@@ -94,10 +93,12 @@ public class Splash extends Fragment {
                     JSONArray categorias = new JSONArray( data.getString("categorias") );
                     for ( int i=0, filas = categorias.length(); i < filas; i++ ) {
                         jso = new JSONObject( categorias.get(i).toString() );
-                        sincronizarDAO.CategoriaInsert( jso.getInt("id"), jso.getString("Detalle") );
+                        //sincronizarDAO.CategoriaInsert( jso.getInt("id"), jso.getString("Detalle") );
                         firestore.collection("categoria").add( new Categoria( jso.getInt("id"), jso.getString("Detalle") ) );
                     }
+                    */
 
+                    /*
                     JSONArray marcas = new JSONArray( data.getString("marcas") );
                     for ( int i=0, filas = marcas.length(); i < filas; i++ ) {
                         jso = new JSONObject( marcas.get(i).toString() );

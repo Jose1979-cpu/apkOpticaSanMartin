@@ -42,7 +42,7 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
         holder.ivCategoria.setImageResource( images[ position ] );
         holder.tvCategoria.setText( categoria.getDetalle() );
 
-        holder.itemView.setOnClickListener( v -> verProductos( categoria) );
+        holder.itemView.setOnClickListener( v -> verProductos( categoria ) );
     }
 
     private void verProductos(Categoria categoria) {
