@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "791306965220",
+    "project_id": "opticasanmartin-2897b",
+    "storage_bucket": "opticasanmartin-2897b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791306965220:android:11d5d167dec465bd7fdcf1",
+        "android_client_info": {
+          "package_name": "com.jdiaz.apkopticasanmartin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791306965220-ee8r3apq4l45alsegmjic87qa9rrngph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcevSsiA3SQz7hdCzkMIs9fwTgj9QM_QI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791306965220-ee8r3apq4l45alsegmjic87qa9rrngph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

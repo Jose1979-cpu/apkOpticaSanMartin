@@ -30,7 +30,7 @@ public class CategoriaDAO {
 
         List<Categoria> categorias = new ArrayList<>();
         while( cursor.moveToNext() )
-            categorias.add( new Categoria( cursor.getInt(0), cursor.getString(1) ) );
+            categorias.add( new Categoria( cursor.getInt(0), cursor.getString(1), null ) );
 
         cursor.close();
         return categorias;

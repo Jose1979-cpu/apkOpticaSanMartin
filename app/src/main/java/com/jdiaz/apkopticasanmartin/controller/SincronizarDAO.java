@@ -31,10 +31,10 @@ public class SincronizarDAO {
         db.Insert("Marca", values);
     }
 
-    public void CategoriaMarcaInsert(JSONObject jso ) throws JSONException {
+    public void CategoriaMarcaInsert( int idCategoria, int idMarca ) {
         ContentValues values = new ContentValues();
-        values.put("idCategoria", jso.getInt("idCategoria") );
-        values.put("idMarca", jso.getInt("idMarca") );
+        values.put("idCategoria", idCategoria );
+        values.put("idMarca", idMarca );
 
         db.Insert("CategoriaMarca", values);
     }

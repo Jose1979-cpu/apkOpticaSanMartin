@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.adapter.ProductoAdapter;
 import com.jdiaz.apkopticasanmartin.controller.ProductoDAO;
@@ -25,6 +27,7 @@ import com.jdiaz.apkopticasanmartin.model.Categoria;
 import com.jdiaz.apkopticasanmartin.model.Marca;
 import com.jdiaz.apkopticasanmartin.model.Producto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Productos extends Fragment {
@@ -33,13 +36,12 @@ public class Productos extends Fragment {
     Context context;
     NavController navController;
 
+    FirebaseFirestore firestore;
+
     ProductoAdapter productoAdapter;
-    ProductoDAO productoDAO;
     List<Producto> productos;
     List<Marca> marcas;
     Categoria categoria;
-
-    boolean bFiltrar = false;
 
     @Override
     public void onDestroy() {
@@ -58,33 +60,49 @@ public class Productos extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         context = getContext();
         navController = Navigation.findNavController(view);
-        productoDAO = new ProductoDAO( context );
+        firestore = FirebaseFirestore.getInstance();
 
         categoria = getArguments() != null ? (Categoria) getArguments().getSerializable("categoria") : null;
         binding.ivBack.setOnClickListener( v -> navController.navigateUp() );
         binding.tvCategoria.setText( categoria.getDetalle() );
 
-        marcas = productoDAO.getMarcas( categoria.getId() );
+        marcas =  categoria.getMarcas();
         marcas.add(0, new Marca( -1, "Todas" ) );
-        binding.spnMarcas.setAdapter( new ArrayAdapter<>( context, android.R.layout.simple_spinner_dropdown_item, marcas ) );
 
+        binding.spnMarcas.setAdapter( new ArrayAdapter<>( context, android.R.layout.simple_spinner_dropdown_item, marcas ) );
         binding.spnMarcas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (  productos != null ) productoAdapter.Filtrar( marcas.get( position ).getId() );
+                if ( productos != null )
+                    productoAdapter.Filtrar( marcas.get( position ).getId() );
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
 
-        productos = productoDAO.getProductos("categorias", categoria.getId() );
-        binding.rvProductos.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.VERTICAL, false ) );
-        if ( productos != null ) {
-            productoAdapter = new ProductoAdapter( context, navController, productos );
-            binding.rvProductos.setAdapter( productoAdapter );
-        }
 
+        getProductos();
+    }
+
+    private void getProductos() {
+        firestore.collection("producto")
+            .whereEqualTo("idCategoria", categoria.getId() )
+            .orderBy("id")
+            .get().addOnSuccessListener(queryDocumentSnapshots -> {
+
+            if ( queryDocumentSnapshots.isEmpty() ) { productos = null; return; }
+
+            productos = new ArrayList<>();
+            ArrayList<DocumentSnapshot> docs = ( ArrayList<DocumentSnapshot> ) queryDocumentSnapshots.getDocuments();
+            for( DocumentSnapshot doc : docs )
+                productos.add( doc.toObject( Producto.class ) );
+
+            productoAdapter = new ProductoAdapter( context, navController, productos );
+            binding.rvProductos.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.VERTICAL, false ) );
+            binding.rvProductos.setAdapter( productoAdapter );
+
+        }).addOnFailureListener(e -> productos = null );
     }
 
 }

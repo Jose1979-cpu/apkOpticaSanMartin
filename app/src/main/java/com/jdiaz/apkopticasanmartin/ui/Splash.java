@@ -29,12 +29,16 @@ import com.jdiaz.apkopticasanmartin.controller.UtilDAO;
 import com.jdiaz.apkopticasanmartin.databinding.FragmentSplashBinding;
 import com.jdiaz.apkopticasanmartin.db.VolleySingleton;
 import com.jdiaz.apkopticasanmartin.model.Categoria;
+import com.jdiaz.apkopticasanmartin.model.CategoriaMarca;
+import com.jdiaz.apkopticasanmartin.model.Marca;
+import com.jdiaz.apkopticasanmartin.model.Producto;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Splash extends Fragment {
     FragmentSplashBinding binding;
@@ -67,7 +71,7 @@ public class Splash extends Fragment {
         sincronizarDAO = new SincronizarDAO(context);
         firestore = FirebaseFirestore.getInstance();
         
-        if ( !utilDAO.getCount("Producto") ) Sincronizar();
+//        if ( !utilDAO.getCount("Producto") ) Sincronizar();
         new Handler().postDelayed( () -> Navigation.findNavController(view).navigate( R.id.navigation_novedades ), 3000 );
     }
 
@@ -89,33 +93,42 @@ public class Splash extends Fragment {
                     JSONObject jso;
                     JSONObject data = new JSONObject( response.getString("data") );
 
-                    /*
                     JSONArray categorias = new JSONArray( data.getString("categorias") );
-                    for ( int i=0, filas = categorias.length(); i < filas; i++ ) {
+                    for ( int i=0; i < categorias.length(); i++ ) {
                         jso = new JSONObject( categorias.get(i).toString() );
                         //sincronizarDAO.CategoriaInsert( jso.getInt("id"), jso.getString("Detalle") );
-                        firestore.collection("categoria").add( new Categoria( jso.getInt("id"), jso.getString("Detalle") ) );
-                    }
-                    */
 
-                    /*
+                        JSONObject jsoMarca;
+                        List<Marca> marcas = new ArrayList<>();
+
+                        try {
+                            JSONArray jsoMarcas = new JSONArray( jso.getString("marcas") );
+                            for ( int j=0; j < jsoMarcas.length(); j++ ) {
+                                jsoMarca = new JSONObject( jsoMarcas.get(j).toString() );
+                                marcas.add( new Marca( jsoMarca.getInt("id"), jsoMarca.getString("Detalle") ) );
+                            }
+                        } catch (JSONException e) {
+                            jsoMarca = new JSONObject( jso.getString("marcas") );
+                            marcas.add( new Marca( jsoMarca.getInt("id"), jsoMarca.getString("Detalle") ) );
+                        }
+
+                        firestore.collection("categoria").add( new Categoria( jso.getInt("id"), jso.getString("Detalle"), marcas ) );
+                    }
+
                     JSONArray marcas = new JSONArray( data.getString("marcas") );
-                    for ( int i=0, filas = marcas.length(); i < filas; i++ ) {
+                    for ( int i=0; i < marcas.length(); i++ ) {
                         jso = new JSONObject( marcas.get(i).toString() );
                         //sincronizarDAO.MarcaInsert( jso.getInt("id"), jso.getString("Detalle") );
-                        firestore.collection("marca").add( new Categoria( jso.getInt("id"), jso.getString("Detalle") ) );
+                        firestore.collection("marca").add( new Marca( jso.getInt("id"), jso.getString("Detalle") ) );
                     }
-                    */
-
-                    /*
-                    JSONArray categoria_marcas = new JSONArray( data.getString("categoria_marcas") );
-                    for ( int i=0, filas = categoria_marcas.length(); i < filas; i++ )
-                        sincronizarDAO.CategoriaMarcaInsert( new JSONObject( categoria_marcas.get(i).toString() )  );
 
                     JSONArray productos = new JSONArray( data.getString("productos") );
-                    for ( int i=0, filas = productos.length(); i < filas; i++ )
-                        sincronizarDAO.ProductoInsert( new JSONObject( productos.get(i).toString() )  );
-                    */
+                    for ( int i=0; i < productos.length(); i++ ) {
+                        jso = new JSONObject( productos.get(i).toString() );
+                        // sincronizarDAO.ProductoInsert( jso );
+                        firestore.collection("producto").add( new Producto( jso ) );
+                    }
+
                 }
             } catch (JSONException e) { throw new RuntimeException(e); }
 

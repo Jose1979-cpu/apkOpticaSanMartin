@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Filter;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.jdiaz.apkopticasanmartin.MainActivity;
 import com.jdiaz.apkopticasanmartin.R;
@@ -41,9 +42,6 @@ public class Categorias extends Fragment {
     List<Categoria> categorias;
     List<Producto> productos;
 
-    CategoriaDAO categoriaDAO;
-    ProductoDAO productoDAO;
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -61,20 +59,16 @@ public class Categorias extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         context = getContext();
         navController = Navigation.findNavController(view);
-        categoriaDAO = new CategoriaDAO( context );
-        productoDAO = new ProductoDAO( context );
         firestore = FirebaseFirestore.getInstance();
 
         getCategorias();
-        productos = productoDAO.getProductos("novedades", -1);
-        if ( productos != null ) {
-            binding.rvProductos.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-            binding.rvProductos.setAdapter(new ProductoAdapter(context, navController, productos));
-        }
+        getProductos();
     }
 
     private void getCategorias() {
-        firestore.collection("categoria").orderBy("id").get().addOnSuccessListener(queryDocumentSnapshots -> {
+        firestore.collection("categoria")
+                .orderBy("id")
+                .get().addOnSuccessListener(queryDocumentSnapshots -> {
             if ( queryDocumentSnapshots.isEmpty() ) categorias = null;
 
             categorias = new ArrayList<>();
@@ -87,4 +81,22 @@ public class Categorias extends Fragment {
             binding.rvCategorias.setAdapter( new CategoriaAdapter( context, navController, categorias, images ) );
         }).addOnFailureListener(e -> categorias = null );
     }
+
+    private void getProductos() {
+        firestore.collection("producto")
+                .whereEqualTo("estado","N")
+                .orderBy("id")
+                .get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if ( queryDocumentSnapshots.isEmpty() ) productos = null;
+
+            productos = new ArrayList<>();
+            ArrayList<DocumentSnapshot> docs = ( ArrayList<DocumentSnapshot> ) queryDocumentSnapshots.getDocuments();
+            for( DocumentSnapshot doc : docs )
+                productos.add( doc.toObject( Producto.class ) );
+
+            binding.rvProductos.setLayoutManager( new LinearLayoutManager( getContext(), RecyclerView.VERTICAL, false ) );
+            binding.rvProductos.setAdapter( new ProductoAdapter( context, navController, productos ) );
+        }).addOnFailureListener(e -> productos = null );
+    }
+
 }

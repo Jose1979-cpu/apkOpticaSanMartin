@@ -2,6 +2,9 @@ package com.jdiaz.apkopticasanmartin.model;
 
 import android.database.Cursor;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class Producto implements Serializable {
@@ -200,6 +203,36 @@ public class Producto implements Serializable {
 
     public void setMaterialLente(String materialLente) {
         MaterialLente = materialLente;
+    }
+
+    public Producto() { }
+
+    public Producto(JSONObject jso) throws JSONException {
+        id = jso.getInt("id");
+        Modelo = jso.getString("Modelo");
+        idCategoria = jso.getInt("idCategoria");
+        idMarca = jso.getInt("idMarca");
+        idColorMarco = jso.getInt("idColorMarco");
+        idColorLente = jso.getInt("idColorLente");
+        idFormaMarco = jso.getInt("idFormaMarco");
+        idMaterialMontura = jso.getInt("idMaterialMontura");
+        idMaterialLente = jso.getInt("idMaterialLente");
+        Genero = jso.getString("Genero");
+        Varilla = jso.isNull("Varilla") ? null : jso.getString("Varilla");
+        Puente = jso.isNull("Puente") ? null : jso.getString("Puente");
+        Espejado = jso.isNull("Espejado") ? null : jso.getString("Espejado");
+        Polarizado = jso.isNull("Polarizado") ? null : jso.getString("Polarizado");
+        Estado = jso.getString("Estado");
+        Precio = jso.getDouble("Precio");
+        Stock = jso.getInt("Stock");
+
+        Categoria = jso.getString("Categoria");
+        Marca = jso.getString("Marca");
+        ColorMarco = jso.isNull("ColorMarco") ? null : jso.getString("ColorMarco");
+        ColorLente = jso.isNull("ColorLente") ? null : jso.getString("ColorLente");
+        FormaMarco = jso.isNull("FormaMarco") ? null : jso.getString("FormaMarco");
+        MaterialMontura = jso.isNull("MaterialMontura") ? null : jso.getString("MaterialMointura");
+        MaterialLente = jso.isNull("MaterialLente") ? null : jso.getString("MaterialLente");
     }
 
     public Producto(Cursor cursor) {

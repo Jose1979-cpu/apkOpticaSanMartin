@@ -67,7 +67,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         return productos.size();
     }
 
-
     public void Filtrar(int idMarca ) {
         productos.clear();
         for ( Producto producto : productosTodos )
