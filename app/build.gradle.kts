@@ -36,13 +36,13 @@ dependencies {
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-    implementation("androidx.navigation:navigation-fragment:2.8.4")
-    implementation("androidx.navigation:navigation-ui:2.8.4")
-    implementation("com.google.firebase:firebase-auth:23.1.0")
-    implementation("com.google.firebase:firebase-firestore:25.1.1")
+    implementation("androidx.navigation:navigation-fragment:2.8.8")
+    implementation("androidx.navigation:navigation-ui:2.8.8")
+    implementation("com.google.firebase:firebase-auth:23.2.0")
+    implementation("com.google.firebase:firebase-firestore:25.1.2")
     implementation("com.google.firebase:firebase-storage:21.0.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
@@ -50,7 +50,7 @@ dependencies {
 
     implementation ("com.android.volley:volley:1.2.1")
     implementation ("com.squareup.picasso:picasso:2.8")
-    implementation ("com.google.android.gms:play-services-maps:19.0.0")
+    implementation ("com.google.android.gms:play-services-maps:19.1.0")
     implementation ("com.google.android.gms:play-services-location:21.3.0")
 
     implementation (platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
