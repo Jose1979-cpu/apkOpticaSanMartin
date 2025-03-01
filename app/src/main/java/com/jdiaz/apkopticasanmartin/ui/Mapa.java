@@ -1,8 +1,11 @@
 package com.jdiaz.apkopticasanmartin.ui;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -22,11 +25,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.jdiaz.apkopticasanmartin.R;
 import com.jdiaz.apkopticasanmartin.databinding.FragmentMapaBinding;
 
-public class Mapa extends Fragment implements OnMapReadyCallback, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener {
+import java.util.Objects;
+
+public class Mapa extends Fragment implements OnMapReadyCallback, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener {
     private static final int REQUEST_PERMISSION_ACCESS_FINE_LOCATION = 1;
 
     FragmentMapaBinding binding;
@@ -55,6 +62,10 @@ public class Mapa extends Fragment implements OnMapReadyCallback, GoogleMap.OnMy
 
         SupportMapFragment supportMapFragment = ( SupportMapFragment ) getChildFragmentManager().findFragmentById( R.id.mapViewMapa );
         if ( supportMapFragment != null ) supportMapFragment.getMapAsync(this);
+
+        binding.tvTitulo.setOnClickListener( v -> binding.cvDetalle.setVisibility( View.VISIBLE ) );
+        binding.tvDetalle.setOnClickListener( v -> binding.cvDetalle.setVisibility( View.INVISIBLE ) );
+
     }
 
     @Override
@@ -74,6 +85,7 @@ public class Mapa extends Fragment implements OnMapReadyCallback, GoogleMap.OnMy
                 ActivityCompat.requestPermissions( requireActivity(), new String[] { Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION  }, REQUEST_PERMISSION_ACCESS_FINE_LOCATION );
 
         this.googleMap=googleMap;
+        this.googleMap.setOnMarkerClickListener(this);
         this.googleMap.setOnMapClickListener(this);
         this.googleMap.setMyLocationEnabled(true);
         this.googleMap.setOnMyLocationClickListener(this);
@@ -90,4 +102,8 @@ public class Mapa extends Fragment implements OnMapReadyCallback, GoogleMap.OnMy
         googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom( gps, 15) );
     }
 
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
+        return false;
+    }
 }
