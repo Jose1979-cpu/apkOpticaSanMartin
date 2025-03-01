@@ -43,8 +43,8 @@ public class Categorias extends Fragment {
     List<Producto> productos;
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         binding = null;
     }
 
